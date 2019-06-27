@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ln.dao.OrderStoreMapper">
+	<resultMap id="BaseResultMap" type="com.ln.entity.Order">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="messageid" property="messageId"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="storeOrder" parameterType="com.ln.entity.Order">
+		insert into orderconsumer(id, name, messageid)
+		values(#{id},#{name},#{messageId})
+	</insert>
+
+
+</mapper>

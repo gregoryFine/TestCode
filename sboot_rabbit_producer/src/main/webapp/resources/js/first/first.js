@@ -1,3 +1,7 @@
 function toClick(){
-	alert('this is first Click');
+	
+	$.get("/first/toProduce", {}, function(result){
+		console.log(result);
+	});
+	
 }

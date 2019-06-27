@@ -7,6 +7,7 @@
 <body>
 <h1>this is first jsp</h1>
 <button onclick="toClick()">toClick</button>
+<script src = "/resources/js/first/jquery3.js"></script>
 <script src="/resources/js/first/first.js"></script>
 </body>
 </html>

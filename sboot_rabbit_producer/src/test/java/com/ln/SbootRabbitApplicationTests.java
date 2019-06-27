@@ -14,6 +14,7 @@ import com.ln.producer.OrderSender;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SbootRabbitApplicationTests {
+	
 
 	@Test
 	public void contextLoads() {
@@ -25,10 +26,9 @@ public class SbootRabbitApplicationTests {
 	@Test
 	public void sendTest1() throws Exception {
 		Order order = new Order();
-		order.setId("20190509000000000000000000" + UUID.randomUUID());
+		order.setId("20190627" + UUID.randomUUID());
 		order.setName("测试消息1");
 		order.setMessageId(System.currentTimeMillis()+"$"+UUID.randomUUID());
-		
 		orderSender.sendOrder(order);
 	}
 
