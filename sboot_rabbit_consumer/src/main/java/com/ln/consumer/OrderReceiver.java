@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.*; //此引入可引入所有annotation标签，要不然@QueueBinding 等标签无法引到
 import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import com.ln.entity.Order;
+import com.ln.service.OrderStoreService;
 import com.rabbitmq.client.Channel;
 
 @Component
@@ -18,6 +20,8 @@ public class OrderReceiver {
 	
 	Logger logger = LoggerFactory.getLogger(OrderReceiver.class);
 
+	@Autowired
+	private OrderStoreService orderStoreService;
 	
 	
 	@RabbitListener(bindings = @QueueBinding(
@@ -37,6 +41,8 @@ public class OrderReceiver {
 		//手工签收必须用到channel,产生ACK，相当于对rabbit产生响应
 		Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
 		channel.basicAck(deliveryTag, false);//false表示不接受批量接受
+		
+		orderStoreService.storeOrder(order);
 		
 	}
 	

@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 public class Order implements Serializable {
 	
-	private static final long serialVersionUID = 9149885805018955386L;
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4555149562709752973L;
+
 	private String id;
 	
 	private String name;
